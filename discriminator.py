@@ -6,7 +6,6 @@ from tensorflow.keras.models import Model
 dropoutProb = 0.5
 numFilters = 64
 alpha = 0.2  # Slope of LeakyReLU
-
 inputSize = (64, 64, 3)
 filterSize = 5
 
@@ -30,6 +29,9 @@ discriminator_output = Dense(1, activation='sigmoid')(x)
 
 # Create the discriminator model
 discriminator = Model(input_layer, discriminator_output)
+
+# Compile the discriminator model
+discriminator.compile(loss='binary_crossentropy', optimizer=tf.keras.optimizers.Adam(), metrics=['accuracy'])
 
 # Summary of the discriminator architecture
 discriminator.summary()
